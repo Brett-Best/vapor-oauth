@@ -18,7 +18,8 @@ let package = Package(
     targets: [
         .target(
             name: "VaporOAuth",
-            dependencies: [.product(name: "Vapor", package: "vapor")]
+            dependencies: [.product(name: "Vapor", package: "vapor")],
+            swiftSettings: [.unsafeFlags(["-enable-private-imports"])]
         ),
         .testTarget(name: "VaporOAuthTests", dependencies: [
             .target(name: "VaporOAuth"),
