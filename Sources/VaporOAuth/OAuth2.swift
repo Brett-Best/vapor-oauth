@@ -43,6 +43,8 @@ public struct OAuth2: LifecycleHandler {
             environment: app.environment
         )
 
+        app.clientValidator = clientValidator
+
         let tokenHandler = TokenHandler(
             clientValidator: clientValidator,
             tokenManager: tokenManager,

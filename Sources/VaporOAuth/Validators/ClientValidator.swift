@@ -77,3 +77,25 @@ public enum ClientError: Error {
     case notFirstParty
     case notConfidential
 }
+
+extension Application {
+    struct ClientValidatorKey: StorageKey {
+        typealias Value = ClientValidator
+    }
+
+    var clientValidator: ClientValidator {
+        get {
+            guard let clientValidator = storage[ClientValidatorKey.self] else {
+                fatalError("ClientValidatorKey not set up. Use app.clientValidator = ...")
+            }
+            return clientValidator
+        }
+        set {
+            storage[ClientValidatorKey.self] = newValue
+        }
+    }
+}
+
+extension Request {
+    var clientValidator: ClientValidator { application.clientValidator }
+}
